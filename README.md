@@ -15,8 +15,36 @@ using Optim
 
 ## Benchmark problems
 
-For an overview of benchmarks see [Jamil and Yang (2013)](http://arxiv.org/abs/1308.4008). Unchecked functions are not implemented yet.
+### Test Functions
 
-**Nonconvex, unconstrained:**
+These are some classic benchmarks that have been constructed purely to test optimization algorithms. They are not motivated by particular applications.
 
-- [x] [Rosenbrock's function](https://en.wikipedia.org/wiki/Rosenbrock_function)
+For an overview of test function benchmarks see [Jamil & Yang (2013)](http://arxiv.org/abs/1308.4008) and [Surjanovic's & Bingham's Library of Simulation Experiments](http://www.sfu.ca/~ssurjano). Unchecked functions are not implemented yet.
+
+**Nonconvex benchmarks:**
+
+- [x] [Rosenbrock function](https://en.wikipedia.org/wiki/Rosenbrock_function)
+- [x] [Ackley function](http://www.sfu.ca/~ssurjano/ackley.html)
+- [x] [Beale function](http://www.sfu.ca/~ssurjano/beale.html)
+- [x] [Bukin function N. 6](http://www.sfu.ca/~ssurjano/bukin6.html)
+
+**Convex benchmarks:**
+
+- [ ] Sphere Function
+- [ ] Elongated Quadratic Valley
+
+### Machine Learning and Statistics Benchmarks
+
+These are benchmark problems that have been constructed with a particular application in mind. Each instance of these problems involves randomly generated data, so make sure you use the same benchmark instance when comparing algorithms.
+
+**Smooth, convex:**
+- [ ] Least-Squares Regression
+- [ ] Robust Regression
+
+**Nonsmooth, convex:**
+- [ ] LASSO
+
+**Nonsmooth, nonconvex:**
+- [ ] Sparse PCA, capped l1 penalty
+- [ ] Sparse Logistic Regression, capped l1 penalty
+
