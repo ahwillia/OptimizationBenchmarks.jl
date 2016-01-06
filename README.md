@@ -43,6 +43,7 @@ These are benchmark problems that have been constructed with a particular applic
 
 **Nonsmooth, convex:**
 - [ ] LASSO
+- [ ] [SLOPE](http://statweb.stanford.edu/~candes/papers/SLOPE.pdf)
 
 **Nonsmooth, nonconvex:**
 - [ ] Sparse PCA, capped l1 penalty
