@@ -6,7 +6,7 @@ A,X,B = nnls(m,n,k,density,noise,seed)
 Generates a non-negative least-squares problem:
     minimize 1/2*|| A*X - B ||_2^2 s.t. X ≥ 0
 
-    A ∈ R(m × k), X ∈ R(k × n), B ∈ R(k × n)
+    A ∈ R(m × k), X ∈ R(k × n), B ∈ R(m × n)
 """
 function nnls(;
     m::Integer = 1000, # number of observations
@@ -27,7 +27,7 @@ function nnls(;
     X = abs(sprand(k,n,density));
 
     # generate B, with noise
-    B = A*X + sqrt(noise)*randn(k,n)
+    B = A*X + sqrt(noise)*randn(m,n)
 
     # Return data and regularization parameter
     return A,X,B
