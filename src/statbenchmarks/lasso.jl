@@ -11,11 +11,11 @@ Generates synthetic data for the lasso problem:
 	minimize 1/2*|| X*β - y ||_2^2 + λ || β ||_1
 """
 function lasso(;
-	m::Int = 1500,              # number of observations
-	n::Int = 5000,              # number of features
-	density::Float64 = 100.0/n, # sparsity parameter
-	noise::Float64 = 0.001,     # variance of gaussian noise added to dependent vars
-	seed::Int=0                 # random seed (to skip this, set seed to be negative)
+	m::Integer = 1500,   # number of observations
+	n::Integer = 5000,   # number of features
+	density = 0.02,      # sparsity parameter
+	noise = 0.001,       # variance of gaussian noise added to dependent vars
+	seed::Integer=0      # random seed (to skip this, set seed to be negative)
 	)
 
 	# set seed of random number generator

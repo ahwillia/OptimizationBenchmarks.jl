@@ -42,7 +42,7 @@ These are benchmark problems that have been constructed with a particular applic
 - [ ] Robust Regression
 
 **Nonsmooth, convex:**
-- [ ] LASSO
+- [x] LASSO
 - [ ] [SLOPE](http://statweb.stanford.edu/~candes/papers/SLOPE.pdf)
 
 **Nonsmooth, nonconvex:**

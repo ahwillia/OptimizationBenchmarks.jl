@@ -18,10 +18,14 @@ include("check_solution.jl")
 
 ## Benchmark Problems ##
 
-# nonconvex, smooth, unconstrained
-include("rosenbrock.jl")
-include("ackley.jl")
-include("beale.jl")
-include("bukin6.jl")
+# test functions (not motivated by applications)
+include("testfunc/rosenbrock.jl")
+include("testfunc/ackley.jl")
+include("testfunc/beale.jl")
+include("testfunc/bukin6.jl")
+
+# machine learning / stats benchmarks
+include("statbenchmarks/lasso.jl")
+include("statbenchmarks/nnls.jl")
 
 end
