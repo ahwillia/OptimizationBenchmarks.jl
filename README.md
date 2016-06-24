@@ -43,9 +43,11 @@ These are benchmark problems that have been constructed with a particular applic
 
 **Nonsmooth, convex:**
 - [x] LASSO
+- [ ] Sparse Logistic Regression, l1 penalty
 - [ ] [SLOPE](http://statweb.stanford.edu/~candes/papers/SLOPE.pdf)
 
 **Nonsmooth, nonconvex:**
-- [ ] Sparse PCA, capped l1 penalty
-- [ ] Sparse Logistic Regression, capped l1 penalty
+- [ ] Sparse PCA, l1 penalty
 
+**Other problems:**
+- [ ] [Optim.jl has some here](https://github.com/JuliaOpt/Optim.jl/blob/master/src/problems/unconstrained.jl) 
