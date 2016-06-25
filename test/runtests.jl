@@ -1,9 +1,9 @@
 using Base.Test
 using OptimizationBenchmarks
-using Optim
+import Optim
 
 # Optim should solve rosenbrock
-result = optimize(rosenbrock, [0.0,0.0], method = :bfgs)
+result = Optim.optimize(rosenbrock, [0.0,0.0], Optim.BFGS())
 check_solution(:rosenbrock, result.f_minimum, result.minimum)
 
 # True solution of :rosenbrock
