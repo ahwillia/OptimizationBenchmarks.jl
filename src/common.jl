@@ -24,7 +24,8 @@ function check_solution(
     sol::BenchmarkSolution,
     fmin::Float64,
     xmin::Vector;
-    tol::Float64=1e-4
+    tol::Float64=1e-6,
+    verbose::Bool=false
     )
 
     nvars = length(xmin)
@@ -37,11 +38,13 @@ function check_solution(
     f_mismatch = f_resid > tol
     x_mismatch = x_resid > tol
     
-    f_mismatch && warn("Objective function does not match solution.")
-    x_mismatch && warn("Optimization variables do not match solution.")
+    if verbose
+        f_mismatch && warn("Objective function does not match solution.")
+        x_mismatch && warn("Optimization variables do not match solution.")
+        
+        !(f_mismatch || x_mismatch) && info("Solution matches.")
+    end
     
-    !(f_mismatch || x_mismatch) && info("Solution matches.")
-
     return f_resid,x_resid
 end
 
