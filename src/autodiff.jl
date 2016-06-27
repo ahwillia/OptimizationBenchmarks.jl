@@ -1,7 +1,6 @@
 import ForwardDiff
 import Base.show
 
-## All smooth objective functions are DifferentiableFunctions
 import Optim: DifferentiableFunction, TwiceDifferentiableFunction
 
 function auto_diff_function(f::Function)
@@ -41,20 +40,3 @@ function auto_twice_diff_function(f::Function)
     return TwiceDifferentiableFunction(f, g!, fg!, h!)
 end
 
-
-## Holds solution to benchmark problems
-immutable BenchmarkSolution
-	x::Vector{Float64}
-	f::Float64
-end
-
-function Base.show(io::IO, sol::BenchmarkSolution)
-    @printf io "Solution to optimization benchmark:\n"
-    if length(join(sol.x, ",")) < 40
-        @printf io " * Minimum: [%s]\n" join(sol.x, ",")
-    else
-        @printf io " * Minimum: [%s, ...]\n" join(sol.x[1:2], ",")
-    end
-    @printf io " * Value of Function at Minimum: %f\n" sol.f
-    return
-end
