@@ -6,7 +6,10 @@ Some benchmark optimization problems for testing new algorithms
 ```julia
 using OptimizationBenchmarks
 using Optim
-@elapsed optimize(rosenbrock, [0.0, 0.0], method = :bfgs)
+problem = Rosenbrock()
+x0 = initialize(problem; seed=1234)
+@elapsed result = optimize(objective(problem), x0, method=Optim.BFGS())
+check_solution(problem,result)
 ```
 
 ## Details

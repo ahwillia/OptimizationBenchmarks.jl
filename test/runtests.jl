@@ -1,14 +1,15 @@
 using Base.Test
 using OptimizationBenchmarks
-import Optim
+using Optim
 
 # Optim should solve rosenbrock
-result = Optim.optimize(rosenbrock, [0.0,0.0], Optim.BFGS())
-check_solution(:rosenbrock, result.f_minimum, result.minimum)
+problem = Rosenbrock()
+result = optimize(objective(problem), 1e-2*randn(2), method=BFGS())
+f_resid,x_resid = check_solution(problem,result)
+@test f_resid < 1e-6
+@test x_resid < 1e-6
 
 # True solution of :rosenbrock
-check_solution(:rosenbrock, 0.0, [1.0,1.0])
-
-# Should throw an error if provided solution is wrong
-@test_throws ErrorException check_solution(:rosenbrock, 0.1, [1.0,1.0])
-@test_throws ErrorException check_solution(:rosenbrock, 0.0, [1.1,1.0])
+f_resid,x_resid = check_solution(solution(Rosenbrock()), 0.0, [1.0,1.0])
+@test f_resid < 1e-6
+@test x_resid < 1e-6
