@@ -1,11 +1,15 @@
-using MLModels
+using LearnBase
+import Transformations: GeneralizedLinearTransformation
+using Losses
 
 immutable SparseRegressionBenchmark
-	w::Matrix   # (1 x p) matrix of true weights
-	ξ::Float64  # scale of observation noise
-	link::Function # TODO: turn into LearnBase.Transformation
+	w::Matrix   # (1 x p) sparse matrix of regression weights
+	tfm::GeneralizedLinearTransformation
 	loss::Loss # TODO: turn into LearnBase.Loss
 end
+
+cannonicalloss(tfm::GeneralizedLinearTransformation)
+
 
 function SparseRegressionBenchmark(
 		nf=5000,             # number of features
@@ -20,21 +24,26 @@ function SparseRegressionBenchmark(
 	SparseRegressionBenchmark(w,ξ,link,loss)
 end
 
-nfeatures(r::SparseRegressionBenchmark) = size(r.w,p)
+nfeatures(r::SparseRegressionBenchmark) = length(r.w)
 
+"""
+	X,y = rand(r::SparseRegressionBenchmark, n=1)
+
+Generate `n` observations from the sparse regression problem
+"""
 function rand(r::SparseRegressionBenchmark, n::Int=1)
 	p = nfeatures(r)
-	X = randn(n,p)
-	y = map(r.link,A_mul_B(r.w, X))
+	X = randn(p,n)
+	y = transform(r.tfm,A_mul_B(r.w, X))
 	return (X,y)
 end
 
 function rand!(r::SparseRegressionBenchmark, y::Matrix)
-	@assert size(y,2) == 1
-	n = size(y,1)
+	@assert size(y,1) == 1 # univariate response
+	n = size(y,2)
 	p = nfeatures(r)
 	A_mul_B!(y,randn(n,p),r.w)
-	map!(r.link,y)
+	transform!(y,r.tfm)
 end
 
-value(r::SparseRegressionBenchmark, W_hat::Matrix) = value(r.loss, r.W, r.W_hat)
+objective(r::SparseRegressionBenchmark, W_hat::Matrix) = value(r.loss, r.W, r.W_hat)
